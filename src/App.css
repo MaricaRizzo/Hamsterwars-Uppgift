@@ -1,20 +1,49 @@
-.app {
-    padding: 0 2em;
-    background-color: black;
-    color: coral;
+body {
+    --main-color: #222831;
+    --accent-color: #B55400;
+    --light-color: #EEEEEE;
+    --dark-color: #393E46;
+    background-color: var(--main-color);
+    color: var(--accent-color);
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
 }
+
 
 h1 {    
     font-family: 'Cuprum', sans-serif;
     font-size: 5rem;
     margin-top: 0;
     padding-top: 3rem;
+    text-decoration: underline;
 }
 
 h2, h3 {
     font-family: 'Archivo', sans-serif;
     font-weight: 500;
+}
+
+
+
+
+header {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    padding-bottom: 3rem;
+}
+
+.navLink {
+    color: var(--dark-color);
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    margin: 0 2rem;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    font-size: 2.2rem;
+    background-color: var(--dark-color);
+    color: var(--accent-color);
 }

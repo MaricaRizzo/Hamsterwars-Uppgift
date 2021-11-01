@@ -24,7 +24,7 @@
 
 
 .galleryCardOverlay {
-    background-color: black;
+    background-color: var(--main-color);
     opacity: 0; 
     transform: scale(1.03);
 }
@@ -36,7 +36,7 @@
 
 
 .form {
-    background-color: coral;
+    background-color: var(--accent-color);
     color: black;
     padding: 2rem;
     

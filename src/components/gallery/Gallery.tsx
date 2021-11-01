@@ -20,25 +20,19 @@ const HamsterGallery = () => {
         <div>
             <h2>Gallery</h2>
 
-
-            
-
-
-
-
             <section className='gallery'>
 
-<AddHamster />
+                <AddHamster />
 
+                {data 
+                ? data.map(hamster => (
+                    <div>
+                <HamsterCard hamster={hamster} key={hamster.id} />
+                <HamsterCardOverlay hamster={hamster} />
+                </div>
+                )) 
+                : 'Loading hamsters...'}
 
-            {data 
-            ? data.map(hamster => (
-                <div>
-            <HamsterCard hamster={hamster} key={hamster.id} />
-            <HamsterCardOverlay hamster={hamster} />
-            </div>
-            )) 
-            : 'Loading hamsters...'}
             </section>
         </div>
     )
