@@ -1,0 +1,48 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5em;
+    padding: 1em;
+    text-align: center;
+}
+
+.galleryCard {
+    background-color: brown;
+    transition: transform .2s;
+    height: 30rem;
+}
+
+.galleryCard:hover {
+    transform: scale(1.03);
+}
+
+.galleryCard img {
+    max-width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+
+.galleryCardOverlay {
+    background-color: black;
+    opacity: 0; 
+    transform: scale(1.03);
+}
+
+.gallery:hover .galleryCardOverlay {
+    opacity: 0.9;
+}
+
+
+
+.form {
+    background-color: coral;
+    color: black;
+    padding: 2rem;
+    
+}
+
+.addHamster {
+    display: flex;
+    flex-direction: column;
+}
