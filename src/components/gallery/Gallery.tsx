@@ -16,6 +16,11 @@ const HamsterGallery = () => {
         sendRequest(setData)
     }, [])
 
+    async function handleDelete(id: string) {
+    await deleteHamster(id);
+    sendRequest(setData)
+    }
+
     return (
         <div>
             <h2>Gallery</h2>
@@ -28,7 +33,7 @@ const HamsterGallery = () => {
                 ? data.map(hamster => (
                     <div>
                 <HamsterCard hamster={hamster} key={hamster.id} />
-                <HamsterCardOverlay hamster={hamster} />
+                <HamsterCardOverlay hamster={hamster}  handleDelete={handleDelete}/>
                 </div>
                 )) 
                 : 'Loading hamsters...'}
@@ -45,6 +50,14 @@ async function sendRequest(saveData: any) {
     saveData(data)
 
 };
+
+
+async function deleteHamster(id: string) {
+    const baseUrl = 'http://localhost:1337/hamsters/';
+    const response = await fetch(baseUrl + id, {method: 'DELETE'})
+    const data = await response.json
+    console.log(data)
+}
 
 
 export default HamsterGallery

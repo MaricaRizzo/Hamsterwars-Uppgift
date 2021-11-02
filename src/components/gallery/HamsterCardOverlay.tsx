@@ -2,9 +2,10 @@ import { Hamster } from '../../models/Hamster';
 
 interface CardGridProps {
     hamster: Hamster;
+    handleDelete: (id: string) => void
 }
 
-const HamsterCardOverlay = ({ hamster }: CardGridProps) => {
+const HamsterCardOverlay = ({ hamster, handleDelete }: CardGridProps) => {
 
     return (
         <div className="galleryCardOverlay">
@@ -15,9 +16,11 @@ const HamsterCardOverlay = ({ hamster }: CardGridProps) => {
             <li>Games: {hamster.games}</li>
             <li>Wins: {hamster.wins}</li>
             <li>Defeats: {hamster.defeats}</li>
-            <button>Delete Hamster</button>
+            <button onClick={() => handleDelete(hamster.id)}>Delete Hamster</button>
         </div>
     )
 }
+
+
 
 export default HamsterCardOverlay
