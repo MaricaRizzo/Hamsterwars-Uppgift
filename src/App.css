@@ -1,8 +1,8 @@
 body {
-    --main-color: #222831;
-    --accent-color: #B55400;
-    --light-color: #EEEEEE;
-    --dark-color: #393E46;
+    --main-color: #1B1F3A;
+    --accent-color: #FF7844;
+    --light-color: #A64942;
+    --dark-color: #53354A;
     background-color: var(--main-color);
     color: var(--accent-color);
     text-align: center;
