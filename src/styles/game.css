@@ -1,0 +1,23 @@
+.fighters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5em;
+    padding: 1em 15%;
+    text-align: center;
+}
+
+.fighters img {
+    max-width: 100%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.game h2 {
+    margin: 4em 0 2em;
+    font-size: 2.5em;
+}
+
+.fighterCard {
+    background-color: var(--dark-color);
+    height: 30em;
+}
