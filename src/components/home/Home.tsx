@@ -33,7 +33,7 @@ const Home = () => {
                 {cutest
                 ? <div>
                     <h2>{cutest.name}</h2>
-                    <img src={'assets/' + cutest.imgName} alt={'Picture of ' + cutest.name} />
+                    <img src={'assets/hamsters/' + cutest.imgName} alt={'Picture of ' + cutest.name} />
                 </div>
                 : 'Loading cutest...'}
 

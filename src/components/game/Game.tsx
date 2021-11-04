@@ -5,6 +5,8 @@ import '../../styles/game.css'
 
 type Hamsters = Hamster;
 
+const baseUrl = 'http://localhost:1337';
+
 const Game = () => {
 
     const [fighters, setFighters] = useState<Hamsters[] | null>(null)
@@ -18,7 +20,19 @@ const Game = () => {
         getFighters(setFighters)
     }
 
-console.log(fighters)
+
+    function updateWin(id: string, wins: number, games: number) {
+        const newWins = wins + 1;
+        const newGames = games + 1;
+
+        return fetch(baseUrl + '/hamsters/' + id, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({wins: newWins, games: newGames})
+        })
+        
+    }
+    
 
     return (
         <div className='game'>
@@ -28,7 +42,7 @@ console.log(fighters)
             <section className="fighters">
                 {fighters
                 ? fighters.map(fighter => (
-                    <FighterCard fighter={fighter} key={fighter.id} />
+                    <FighterCard fighter={fighter} key={fighter.id} updateWin={updateWin}/>
                 ))
                 : 'Loading fighters...'}
             </section>
@@ -42,12 +56,10 @@ console.log(fighters)
 
 
 async function getFighters(saveFighters: any) {
-    const baseUrl = 'http://localhost:1337';
     const response = await fetch(baseUrl + '/hamsters');
     const data = await response.json()
     const fighters = await data.sort(() => .5 - Math.random()).slice(0,2)
     saveFighters(fighters)
 };
 
-
-export default Game
+export default Game 

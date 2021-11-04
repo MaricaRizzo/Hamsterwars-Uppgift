@@ -8,7 +8,7 @@ const HamsterCard = ({ hamster }: CardGridProps) => {
 
     return (
         <div className="galleryCard">
-            <img src={'assets/' + hamster.imgName} alt={'Picture of ' + hamster.name} />
+            <img src={'assets/hamsters/' + hamster.imgName} alt={'Picture of ' + hamster.name} />
             <h2>{hamster.name}</h2>
         </div>
     )
