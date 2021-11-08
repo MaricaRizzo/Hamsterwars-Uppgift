@@ -9,7 +9,7 @@ const baseUrl = 'http://localhost:1337';
 
 const Game = () => {
 
-    const [fighters, setFighters] = useState<Hamsters[] | null>(null)
+    const [fighters, setFighters] = useState<Hamsters[] | null >(null)
     
 
     useEffect(() => {
@@ -32,6 +32,36 @@ const Game = () => {
         })
         
     }
+
+    function updateDefeats(id:string, defeats: number, games: number) {
+        const newDefeats = defeats + 1;
+        const newGames = games + 1;
+
+        return fetch(baseUrl + '/hamsters/' + id, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({defeats: newDefeats, games: newGames})
+        })
+        
+    }
+
+    function updateWinnersAndLosers(winnerId: string) {
+        
+        if( fighters ) { 
+            const winner = fighters.find(fighter => fighter.id === winnerId);
+            const loser = fighters.find(fighter => fighter.id !== winnerId);
+            if(winner){
+              updateWin(winner.id, winner.wins, winner.games);  
+            }
+            if(loser){
+                updateDefeats(loser.id, loser.defeats, loser.games);
+            }
+        } else {
+            console.log('fighters is undefined')
+        }
+        
+     }
+     
     
 
     return (
@@ -42,7 +72,7 @@ const Game = () => {
             <section className="fighters">
                 {fighters
                 ? fighters.map(fighter => (
-                    <FighterCard fighter={fighter} key={fighter.id} updateWin={updateWin}/>
+                    <FighterCard fighter={fighter} key={fighter.id} updateWinnersAndLosers={updateWinnersAndLosers}/>
                 ))
                 : 'Loading fighters...'}
             </section>

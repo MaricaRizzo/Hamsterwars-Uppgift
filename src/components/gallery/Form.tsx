@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import validator from 'validator';
 
 const AddHamster = () => {
 
@@ -9,12 +10,13 @@ const AddHamster = () => {
     const [imgName, setImgName] = useState('');
 
 
-    const nameIsValid = isValidName(name)
-    const lovesIsValid = isValidLoves(loves)
-    const foodIsValid = isValidFood(favFood)
+    const nameIsValid = isValidString(name)
+    const lovesIsValid = isValidString(loves)
+    const foodIsValid = isValidString(favFood)
 	const ageIsValid = isValidAge(age)
+    const urlIsValid = isValidUrl(imgName)
 
-	const formIsValid = nameIsValid && ageIsValid && lovesIsValid && foodIsValid
+	const formIsValid = nameIsValid && ageIsValid && lovesIsValid && foodIsValid && urlIsValid
 
 
 
@@ -69,24 +71,31 @@ const AddHamster = () => {
 }
 
 
-function isValidName(name: string): boolean {
-	return name.length >= 2
+function isValidString(value: string): boolean {
+    if (validator.isAlpha(value) && value.length >= 2) {
+        return true
+    } else {
+        return false
+    }
 }
 
 function isValidAge(age: number): boolean {
-	if( isNaN(age) ) return false
-	if( age < 0 ) return false
 	let ageString = String(age)
-	if( ageString.includes(',') || ageString.includes('.') ) return false
-	return true
+	if(validator.isNumeric(ageString) && age > 0) {
+        return true
+    } else {
+	return false
+    }
 }
 
-function isValidLoves(loves: string): boolean {
-	return loves.length >= 2
-}
 
-function isValidFood(food: string): boolean {
-	return food.length >= 2
+
+function isValidUrl(url: string): boolean {
+    if (validator.isURL(url)) {
+        return true
+      } else {
+        return false
+      }
 }
 
 

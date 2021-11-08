@@ -2,13 +2,13 @@ import { Hamster } from '../../models/Hamster';
 
 interface CardGridProps {
     fighter: Hamster;
-    updateWin: (id:string, wins:number, games:number) => void
+    updateWinnersAndLosers: (winnerId: string) => void
 }
 
-const FighterCard = ({ fighter, updateWin }: CardGridProps) => {
+const FighterCard = ({ fighter, updateWinnersAndLosers }: CardGridProps) => {
 
     return (
-        <div className="fighterCard" onClick={() => updateWin(fighter.id, fighter.wins, fighter.games) }>
+        <div className="fighterCard" onClick={() => updateWinnersAndLosers(fighter.id) }>
             <img src={'assets/hamsters/' + fighter.imgName} alt={'Picture of ' + fighter.name} />
             <h3>{fighter.name}</h3>
         </div>

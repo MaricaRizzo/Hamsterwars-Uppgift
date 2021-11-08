@@ -34,7 +34,7 @@ const HamsterGallery = () => {
                 ? data.map(hamster => (
                     <div>
                 <HamsterCard hamster={hamster} key={hamster.id} />
-                <HamsterCardOverlay hamster={hamster}  handleDelete={handleDelete}/>
+                <HamsterCardOverlay hamster={hamster} handleDelete={handleDelete}/>
                 </div>
                 )) 
                 : 'Loading hamsters...'}
