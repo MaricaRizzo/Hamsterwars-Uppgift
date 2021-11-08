@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use( '/', express.static(__dirname + '../../src'))
+app.use( '/', express.static(__dirname + '../../public'))
 app.use('/img', express.static(__dirname + '/../hamsters'))
 
 
