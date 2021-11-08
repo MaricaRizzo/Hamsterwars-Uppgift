@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const hamstersRouter = require('./routes/hamsters.js');
 const cors = require('cors');
+const index = require('../../src/App')
 
 const PORT = process.env.PORT || 1337
 
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use( '/', express.static(__dirname + '../../src'))
+app.use( '/', express.static(index))
 app.use('/img', express.static(__dirname + '/../hamsters'))
 
 
