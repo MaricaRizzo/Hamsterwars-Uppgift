@@ -44,8 +44,7 @@ const Home = () => {
 };
 
 async function sendRequest(saveCutest: any) {
-    const baseUrl = 'http://localhost:1337';
-    const response = await fetch(baseUrl + '/hamsters/cutest');
+    const response = await fetch('/hamsters/cutest');
     const cutest = await response.json()
     const randomCutest = await cutest[Math.floor(Math.random() * cutest.length)]
     saveCutest(randomCutest)

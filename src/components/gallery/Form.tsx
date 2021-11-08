@@ -23,9 +23,8 @@ const AddHamster = () => {
      function handleSubmit() {
         const newObject = {name, age, loves, favFood, imgName, wins:0, defeats:0, games:0 };
 
-        const baseUrl = 'http://localhost:1337';
         
-        return fetch(baseUrl + '/hamsters', {
+        return fetch('/hamsters', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newObject)
