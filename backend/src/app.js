@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const hamstersRouter = require('./routes/hamsters.js');
 const cors = require('cors');
-const index = require('../../src/App.tsx')
-
 const PORT = process.env.PORT || 1337
 
 
@@ -20,13 +18,18 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use( '/', index)
+app.use( '/', express.static(__dirname + '/../../build'))
 app.use('/img', express.static(__dirname + '/../hamsters'))
 
 
 //routes / endpoints
 
 app.use('/hamsters', hamstersRouter)
+
+
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/build/index.html')
+})
 
 
 app.listen(PORT, () => {
