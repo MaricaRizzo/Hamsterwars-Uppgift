@@ -1,48 +1,110 @@
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1.5em;
+    grid-gap: 3em;
     padding: 1em;
     text-align: center;
+    margin: 5% ;
+}
+
+.galleryH2 {
+    font-size: 3rem;
+    padding-top: 2rem;
+}
+
+.galleryCardContainer {
+    position: relative;
 }
 
 .galleryCard {
     background-color: var(--dark-color);
     transition: transform .2s;
     height: 30rem;
+    border-radius: 1rem;
 }
 
-.galleryCard:hover {
-    transform: scale(1.03);
-}
 
 .galleryCard img {
-    max-width: 100%;
+    width: 100%;
     height: 80%;
     object-fit: cover;
+    border-radius: 1rem 1rem 0 0; 
 }
 
 
 .galleryCardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: var(--main-color);
     opacity: 0; 
-    transform: scale(1.03);
+    min-width: 100%;
+    min-height: 100%;
+    list-style: none;
+    font-size: 1.5rem;
+    padding-top: 3rem;
 }
 
-.gallery:hover .galleryCardOverlay {
+.galleryCardOverlay li {
+    margin-bottom: 0.5rem;
+}
+
+
+
+.galleryCardContainer:hover .galleryCardOverlay {
     opacity: 0.9;
 }
+
+
+
 
 
 
 .form {
     background-color: var(--dark-color);
     color: var(--accent-color);
-    padding: 2rem;
-    
+    padding: 1rem   2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+}
+
+.form h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem;
 }
 
 .addHamster {
     display: flex;
     flex-direction: column;
+}
+
+.addHamster input {
+    font-size: 1.3rem;
+    margin: 0.2rem;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+}
+
+.valid {
+	background-color: #78bb7d;
+    border-style: none;
+}
+
+.galleryButton {
+    background-color: var(--light-color);
+    border-style: none;
+    border-radius: 1.5rem;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    align-self: center;
+    min-width: 50%;
+}
+
+.galleryButton:hover {
+    transform: scale(1.1);
 }

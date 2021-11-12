@@ -42,27 +42,26 @@ const AddHamster = () => {
 
             <form className="addHamster" onSubmit={handleSubmit}>
                 <label>Name: 
-                <input type="text" onChange={e => setName(e.target.value)}/>
+                <input type="text" onChange={e => setName(e.target.value)} className={nameIsValid ? 'valid' : 'invalid'}/>
                 </label>
 
                 <label>Age: 
-                <input type="number" className={ageIsValid ? 'valid' : 'invalid'}
-				onChange={e => setAge(Number(e.target.value))}/>
+                <input type="number" className={ageIsValid ? 'valid' : 'invalid'} onChange={e => setAge(Number(e.target.value))}/>
                 </label>
 
                 <label>Loves: 
-                <input type="text" onChange={e => setLoves(e.target.value)}/>
+                <input type="text" className={lovesIsValid ? 'valid' : 'invalid'} onChange={e => setLoves(e.target.value)}/>
                 </label>
 
                 <label>Favorite food: 
-                <input type="text" onChange={e => setFavFood(e.target.value)}/>
+                <input type="text" className={foodIsValid ? 'valid' : 'invalid'} onChange={e => setFavFood(e.target.value)}/>
                 </label>
 
                 <label>Image link: 
-                <input type="text" onChange={e => setImgName(e.target.value)}/>
+                <input type="text" className={urlIsValid ? 'valid' : 'invalid'} onChange={e => setImgName(e.target.value)}/>
                 </label>
 
-                <input type="submit" value="Add" disabled={!formIsValid} />
+                <input className="galleryButton" type="submit" value="Add" disabled={!formIsValid} />
 
             </form>
         </div>

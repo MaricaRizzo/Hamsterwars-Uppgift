@@ -22,7 +22,7 @@ const HamsterGallery = () => {
 
     return (
         <div>
-            <h2>Gallery</h2>
+            <h2 className="galleryH2">All The Fighters</h2>
 
             <section className='gallery'>
 
@@ -30,10 +30,10 @@ const HamsterGallery = () => {
 
                 {data 
                 ? data.map(hamster => (
-                    <div>
-                <HamsterCard hamster={hamster} key={hamster.id} />
-                <HamsterCardOverlay hamster={hamster} handleDelete={handleDelete}/>
-                </div>
+                    <div className='galleryCardContainer' key={hamster.id}>
+                    <HamsterCard hamster={hamster}  />
+                    <HamsterCardOverlay hamster={hamster} handleDelete={handleDelete}/>
+                    </div>
                 )) 
                 : 'Loading hamsters...'}
 
@@ -43,9 +43,13 @@ const HamsterGallery = () => {
 };
 
 async function sendRequest(saveData: any) {
+    try {
     const response = await fetch('/hamsters');
     const data = await response.json()
     saveData(data)
+    } catch (error) {
+        saveData(null)
+     }
 
 };
 

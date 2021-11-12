@@ -16,7 +16,7 @@ const HamsterCardOverlay = ({ hamster, handleDelete }: CardGridProps) => {
             <li>Games: {hamster.games}</li>
             <li>Wins: {hamster.wins}</li>
             <li>Defeats: {hamster.defeats}</li>
-            <button onClick={() => handleDelete(hamster.id)}>Delete Hamster</button>
+            <button className="galleryButton" onClick={() => handleDelete(hamster.id)}>Delete Hamster</button>
         </div>
     )
 }

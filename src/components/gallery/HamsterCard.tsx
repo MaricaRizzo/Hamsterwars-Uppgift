@@ -6,12 +6,20 @@ interface CardGridProps {
 
 const HamsterCard = ({ hamster }: CardGridProps) => {
 
+    let imgSrc = ""
+        if(hamster.imgName.startsWith("http")){
+            imgSrc= hamster.imgName
+        } else {
+           imgSrc='assets/hamsters/' + hamster.imgName
+        }
+
     return (
         <div className="galleryCard">
-            <img src={'assets/hamsters/' + hamster.imgName} alt={'Picture of ' + hamster.name} />
+            <img src={imgSrc} alt={'Picture of ' + hamster.name}/>
             <h2>{hamster.name}</h2>
         </div>
     )
 }
+
 
 export default HamsterCard

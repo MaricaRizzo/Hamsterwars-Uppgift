@@ -9,15 +9,12 @@ type Hamsters = Hamster;
 
 const Home = () => {
 
-    const [cutest, setCutest] = useState<Hamsters | null>(null)
+    const [cutest, setCutest] = useState<Hamsters | null>(null);
     
     useEffect(() => {
         sendRequest(setCutest)
     }, [])
 
-
-
-    console.log(cutest)
 
     return (
         <div className="home">
@@ -28,14 +25,20 @@ const Home = () => {
             </section>
 
             <section className="cutest">
-                <h3>The cutest of them all:</h3>
+                
 
                 {cutest
                 ? <div>
+                    <h3>The cutest of them all:</h3>
                     <h2>{cutest.name}</h2>
                     <img src={'assets/hamsters/' + cutest.imgName} alt={'Picture of ' + cutest.name} />
                 </div>
-                : 'Loading cutest...'}
+                : <div className="error">
+                    <h3>Couldn´t connect to the server!</h3>
+                    <button onClick={() => sendRequest(setCutest)}>Try again</button>
+                    </div> 
+                }
+                
 
             </section>
 
@@ -44,10 +47,17 @@ const Home = () => {
 };
 
 async function sendRequest(saveCutest: any) {
+    try {
     const response = await fetch('/hamsters/cutest');
+    if (!response.ok) {
+        throw Error(response.statusText);
+      }
     const cutest = await response.json()
     const randomCutest = await cutest[Math.floor(Math.random() * cutest.length)]
     saveCutest(randomCutest)
+    } catch (error) {
+       saveCutest(null)
+    }
 };
 
 

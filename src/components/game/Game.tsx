@@ -2,20 +2,34 @@ import { useEffect, useState } from 'react';
 import { Hamster } from '../../models/Hamster';
 import FighterCard from './FighterCard'
 import '../../styles/game.css'
+import FighterCardOverlay from './FighterCardOverlay';
 
 type Hamsters = Hamster;
 
 const Game = () => {
 
-    const [fighters, setFighters] = useState<Hamsters[] | null >(null)
+    const [fighters, setFighters] = useState<Hamsters[] | null >(null);
+    const [showInfo, setShowInfo] = useState(false);
     
 
     useEffect(() => {
         getFighters(setFighters)
     }, [])
 
+
+    
+    function handleShowInfo(){
+            
+            if(showInfo === true ){
+                setShowInfo(false)
+            } else if(showInfo === false) {
+                setShowInfo(true)
+            }
+        }
+
     function newGame() {
         getFighters(setFighters)
+        handleShowInfo()
     }
 
 
@@ -44,22 +58,25 @@ const Game = () => {
     }
 
     function updateWinnersAndLosers(winnerId: string) {
-        
-        if( fighters ) { 
+
+         if( fighters ) { 
+
             const winner = fighters.find(fighter => fighter.id === winnerId);
             const loser = fighters.find(fighter => fighter.id !== winnerId);
             if(winner){
-              updateWin(winner.id, winner.wins, winner.games);  
+              updateWin(winner.id, winner.wins, winner.games); 
             }
             if(loser){
                 updateDefeats(loser.id, loser.defeats, loser.games);
-            }
+            };
+
+            handleShowInfo();
+            
         } else {
             console.log('fighters is undefined')
         }
         
      }
-     
     
 
     return (
@@ -70,24 +87,32 @@ const Game = () => {
             <section className="fighters">
                 {fighters
                 ? fighters.map(fighter => (
-                    <FighterCard fighter={fighter} key={fighter.id} updateWinnersAndLosers={updateWinnersAndLosers}/>
+                    <div className="fighterCardContainer" key={fighter.id}>
+                        <FighterCard fighter={fighter} updateWinnersAndLosers={updateWinnersAndLosers} />
+                        {showInfo && <FighterCardOverlay fighter={fighter}/>}
+                    </div>
                 ))
                 : 'Loading fighters...'}
             </section>
 
-            <button onClick={newGame}>New Game</button>
+            <button className="gameButton" onClick={newGame}>New Game</button>
 
         </div>
     )
 };
 
-
+    
 
 async function getFighters(saveFighters: any) {
+    try {
     const response = await fetch('/hamsters');
     const data = await response.json()
     const fighters = await data.sort(() => .5 - Math.random()).slice(0,2)
     saveFighters(fighters)
+    } catch (error) {
+        saveFighters(null)
+     }
 };
 
 export default Game 
+
