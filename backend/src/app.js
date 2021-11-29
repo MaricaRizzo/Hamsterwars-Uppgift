@@ -19,6 +19,8 @@ app.use((req, res, next) => {
 
 app.use( '/', express.static(__dirname + '/../../build'))
 app.use('/img', express.static(__dirname + '/../hamsters'))
+app.use('/gallery', express.static(__dirname + '/../../build'))
+app.use('/game', express.static(__dirname + '/../../build'))
 
 
 //routes / endpoints
