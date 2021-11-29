@@ -1,7 +1,11 @@
 import { useState } from "react";
 import validator from 'validator';
 
-const AddHamster = () => {
+interface CardGridProps {
+    reloadData: () => void
+}
+
+const AddHamster = ({ reloadData }: CardGridProps) => {
 
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
@@ -20,7 +24,7 @@ const AddHamster = () => {
 
 
 
-     function handleSubmit() {
+     function addHamster() {
         const newObject = {name, age, loves, favFood, imgName, wins:0, defeats:0, games:0 };
 
         
@@ -31,7 +35,11 @@ const AddHamster = () => {
         })
     }
 
-
+    async function handleSubmit(e: any) {
+        e.preventDefault()
+        await addHamster()
+        reloadData()
+    }
 
 
 
@@ -70,7 +78,7 @@ const AddHamster = () => {
 
 
 function isValidString(value: string): boolean {
-    if (validator.isAlpha(value) && value.length >= 2) {
+    if (value.length >= 2) {
         return true
     } else {
         return false
@@ -79,7 +87,7 @@ function isValidString(value: string): boolean {
 
 function isValidAge(age: number): boolean {
 	let ageString = String(age)
-	if(validator.isNumeric(ageString) && age > 0) {
+	if(validator.isNumeric(ageString) && age >= 0) {
         return true
     } else {
 	return false

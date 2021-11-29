@@ -20,13 +20,17 @@ const HamsterGallery = () => {
     sendRequest(setData)
     }
 
+    function reloadData() {
+        sendRequest(setData)
+    }
+
     return (
         <div>
             <h2 className="galleryH2">All The Fighters</h2>
 
             <section className='gallery'>
 
-                <AddHamster />
+                <AddHamster reloadData={reloadData}/>
 
                 {data 
                 ? data.map(hamster => (

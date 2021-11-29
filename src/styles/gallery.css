@@ -108,3 +108,12 @@
 .galleryButton:hover {
     transform: scale(1.1);
 }
+
+.galleryButton:disabled {
+    background-color: lightgray;
+    color: grey;
+}
+
+.galleryButton:disabled:hover {
+    transform: scale(1);
+}
