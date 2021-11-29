@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 1337
 
 
 
-
 //middleware
 app.use( express.urlencoded({ extended: true }) )
 app.use( express.json() )
@@ -28,7 +27,7 @@ app.use('/hamsters', hamstersRouter)
 
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/build/index.html')
+    res.sendFile(__dirname + '../../build/index.html')
 })
 
 
