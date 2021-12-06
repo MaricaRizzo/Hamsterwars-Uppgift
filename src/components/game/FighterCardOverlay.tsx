@@ -1,22 +1,60 @@
 import { Hamster } from '../../models/Hamster';
+import { useEffect, useState } from 'react';
 
 interface CardGridProps {
-    fighter: Hamster;
+    fighter: string;
+    showInfo: boolean;
 }
 
-const FighterCardOverlay = ({ fighter }: CardGridProps) => {
+type Hamsters = Hamster;
 
+const FighterCardOverlay = ({ fighter, showInfo }: CardGridProps) => {
+
+    const [updatedData, setUpdatedData] = useState<Hamsters | null>(null);
+
+    useEffect(() => {
+        const controller = new AbortController(); 
+        const signal = controller.signal;
+    
+        (async () => { 
+          try {
+            const response = await fetch('/hamsters/' + fighter, { signal });
+            const data = await response.json();
+    
+            setUpdatedData(data);
+          } catch (error) {
+            console.log(error)
+          }
+        })();
+    
+        return () => {
+          controller.abort();
+        };
+      }, [showInfo, fighter]);
+
+
+      
+    
     return (
         <div className="fighterCardOverlay" >
-            <li>Name: {fighter.name}</li>
-            <li>Age: {fighter.age}</li>
-            <li>Loves: {fighter.loves}</li>
-            <li>Favorite Food: {fighter.favFood}</li>
-            <li>Games: {fighter.games}</li>
-            <li>Wins: {fighter.wins}</li>
-            <li>Defeats: {fighter.defeats}</li>
+           {updatedData ?
+           <div>
+            <li>Name: {updatedData.name}</li>
+            <li>Age: {updatedData.age}</li>
+            <li>Loves: {updatedData.loves}</li>
+            <li>Favorite Food: {updatedData.favFood}</li>
+            <li>Games: {updatedData.games}</li>
+            <li>Wins: {updatedData.wins}</li>
+            <li>Defeats: {updatedData.defeats}</li>
+            </div>
+            : 'Loading info...'
+            }
+
         </div>
     )
 }
+
+
+
 
 export default FighterCardOverlay

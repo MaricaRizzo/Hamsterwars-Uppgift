@@ -10,6 +10,7 @@ const Game = () => {
 
     const [fighters, setFighters] = useState<Hamsters[] | null >(null);
     const [showInfo, setShowInfo] = useState(false);
+   
     
 
     useEffect(() => {
@@ -54,6 +55,7 @@ const Game = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({defeats: newDefeats, games: newGames})
         })
+
         
     }
 
@@ -77,7 +79,6 @@ const Game = () => {
         }
         
      }
-    
 
     return (
         <div className='game'>
@@ -89,7 +90,7 @@ const Game = () => {
                 ? fighters.map(fighter => (
                     <div className="fighterCardContainer" key={fighter.id}>
                         <FighterCard fighter={fighter} updateWinnersAndLosers={updateWinnersAndLosers} />
-                        {showInfo && <FighterCardOverlay fighter={fighter}/>}
+                        {showInfo && <FighterCardOverlay fighter={fighter.id} showInfo={showInfo}/>}
                     </div>
                 ))
                 : 'Loading fighters...'}
