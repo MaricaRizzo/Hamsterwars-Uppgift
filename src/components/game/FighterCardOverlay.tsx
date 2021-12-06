@@ -30,7 +30,7 @@ const FighterCardOverlay = ({ fighter, showInfo }: CardGridProps) => {
         return () => {
           controller.abort();
         };
-      }, [showInfo, fighter]);
+      });
 
 
       
